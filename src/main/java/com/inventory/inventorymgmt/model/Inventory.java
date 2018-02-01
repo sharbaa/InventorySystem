@@ -1,7 +1,6 @@
 package com.inventory.inventorymgmt.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Inventory implements Serializable {
 
@@ -11,7 +10,7 @@ public class Inventory implements Serializable {
 	private static final long serialVersionUID = 6528021435831017698L;
 
 	private String invetoryId;
-	private List<ProductInfo> productInfo;
+	private ProductInfo productInfo;
 	private Integer quantity;
 
 	public String getInvetoryId() {
@@ -22,11 +21,11 @@ public class Inventory implements Serializable {
 		this.invetoryId = invetoryId;
 	}
 
-	public List<ProductInfo> getProductInfo() {
+	public ProductInfo getProductInfo() {
 		return productInfo;
 	}
 
-	public void setProductInfo(List<ProductInfo> productInfo) {
+	public void setProductInfo(ProductInfo productInfo) {
 		this.productInfo = productInfo;
 	}
 
@@ -79,7 +78,7 @@ public class Inventory implements Serializable {
 	public String toString() {
 		return "Inventory [invetoryId=" + invetoryId + ", productInfo=" + productInfo + ", quantity=" + quantity + "]";
 	}
-	
+
 	
 
 }

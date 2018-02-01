@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.inventory.inventorymgmt.model.ProductInfo;
+import com.inventory.inventorymgmt.model.Inventory;
 import com.inventory.inventorymgmt.repository.InventoryRepository;
 
 /**
@@ -24,7 +24,7 @@ public class InventoryService {
 	 * 
 	 * @return
 	 */
-	public List<ProductInfo>  getInventoryDetails(){
+	public List<Inventory>  getInventoryDetails(){
 		return inventoryRepository.findAll();
 	}
 
@@ -32,8 +32,8 @@ public class InventoryService {
 	 * 
 	 * @param productInfo
 	 */
-	public void  saveInventoryDetails(ProductInfo productInfo){
-		 inventoryRepository.save(productInfo);
+	public void  saveInventoryDetails(Inventory inventoryInfo){
+		 inventoryRepository.save(inventoryInfo);
 	}
 	
 	
