@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class InventoryController {
 	}
 	
 	@RequestMapping(value="/insert/inventorydetails/{id}/{quantity}" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addInventory(ProductInfo productInfo ,@PathVariable String id,@PathVariable Integer quantity){
+	public void addInventory(@RequestBody ProductInfo productInfo ,@PathVariable String id,@PathVariable Integer quantity){
 		Inventory inventory = new Inventory();
 		inventory.setInvetoryId(id);
 		inventory.setProductInfo(productInfo);
