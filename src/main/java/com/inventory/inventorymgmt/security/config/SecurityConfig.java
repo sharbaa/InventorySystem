@@ -1,4 +1,4 @@
-package com.inventory.inventorymgmt.security.config;
+/*package com.inventory.inventorymgmt.security.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,4 +26,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and().httpBasic() //
 		.and().csrf().disable();
     }
-}
+}*/
