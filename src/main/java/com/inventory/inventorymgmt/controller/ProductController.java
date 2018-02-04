@@ -1,6 +1,8 @@
 package com.inventory.inventorymgmt.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inventory.inventorymgmt.model.Product;
-import com.inventory.inventorymgmt.repository.ProductRepository;
+import com.inventory.inventorymgmt.model.ProductInfo;
+import com.inventory.inventorymgmt.service.ProductInfoService;
 
 
 
@@ -24,38 +26,35 @@ import com.inventory.inventorymgmt.repository.ProductRepository;
 public class ProductController {
 
 	@Autowired
-	ProductRepository productRepository;
+	ProductInfoService productInfoService;
 	
 	
 	@RequestMapping(value="/insert" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void insertProduct(@RequestBody Product product){
-		productRepository.save(product);	
+	public void insertProduct(@RequestBody ProductInfo product){
+		productInfoService.insertProduct(product);	
 	}
-	
-	
 	
 
 	@RequestMapping(value="/find/{id}" , method = RequestMethod.GET , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Product getProductDetailById(@PathVariable Integer id){
-		return productRepository.findOne(id);
+	public ProductInfo getProductDetailById(@PathVariable Integer id){
+		return productInfoService.getProductDetailById(id);
 	}
 	
+	@RequestMapping(value="/findAll" , method = RequestMethod.GET , consumes=MediaType.APPLICATION_JSON_VALUE)
+	public List<ProductInfo> getProductDetails(){
+		return productInfoService.getProductDetails();
+	}
 
 	@RequestMapping(value="/update" , method = RequestMethod.PUT , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void updateProductDetails(@RequestBody Product product){
-		productRepository.save(product);
+	public void updateProductDetails(@RequestBody ProductInfo product){
+		productInfoService.updateProductDetails(product);
 	}
-	
-	
-	
 	
 	
 	@RequestMapping(value="/remove/{id}" , method = RequestMethod.DELETE , consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void removeProductDetailById(@PathVariable Integer id){
-		 productRepository.delete(id);
+		productInfoService.removeProductDetailById(id);
 	}
-	
-	
 	
 	
 	
