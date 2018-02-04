@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,13 +24,13 @@ public class UserController {
 	private UserDetailsService userDetailsService;
 	
 	
-	@RequestMapping(value="/userinventoryinfo" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public UserDetails getUserInventoryDetails(@RequestBody String userToken){
+	@RequestMapping(value="/userinventoryinfo/{userToken}" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
+	public UserDetails getUserInventoryDetails(@PathVariable String userToken){
 		return userDetailsService.getUserInfo(userToken);
 	}
 	
-	@RequestMapping(value="/inventoryinfo" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public List<Inventory> getInventoryDetails(@RequestBody String userToken){
+	@RequestMapping(value="/inventoryinfo/{userToken}" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
+	public List<Inventory> getInventoryDetails(@PathVariable String userToken){
 		return userDetailsService.getInventoryInfo(userToken);
 	}
 	
