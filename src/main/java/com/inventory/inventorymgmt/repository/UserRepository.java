@@ -11,4 +11,6 @@ import com.inventory.inventorymgmt.model.UserDetails;
  */
 public interface UserRepository extends MongoRepository<UserDetails, String>{
 
+	public UserDetails findByUserToken(String userToken);
+	
 }

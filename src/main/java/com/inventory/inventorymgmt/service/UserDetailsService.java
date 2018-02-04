@@ -27,7 +27,7 @@ public class UserDetailsService {
 	
 	
 	public UserDetails getUserInfo(String userToken){
-		return userRepository.findOne(userToken);
+		return userRepository.findByUserToken(userToken);
 	}
 	
 	public List<Inventory> getInventoryInfo(String userToken){
