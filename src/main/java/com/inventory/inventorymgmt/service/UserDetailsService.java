@@ -1,6 +1,5 @@
 package com.inventory.inventorymgmt.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import com.inventory.inventorymgmt.model.Inventory;
 import com.inventory.inventorymgmt.model.ProductInfo;
 import com.inventory.inventorymgmt.model.UserDetails;
 import com.inventory.inventorymgmt.model.UserWithProductAndInventory;
-import com.inventory.inventorymgmt.repository.InventoryRepository;
 import com.inventory.inventorymgmt.repository.UserRepository;
 
 /**
@@ -98,6 +96,37 @@ public class UserDetailsService {
 		}
 	
 		userRepository.save(userDetail);
+		
+	}
+	
+	/**
+	 * 
+	 * @param userToken
+	 * @param productInfo
+	 */
+	public void deleteProductForUser(String userToken,List<ProductInfo> productInfo){
+		
+		UserDetails userDetail = userRepository.findByUserToken(userToken);
+		List<ProductInfo> prodInfo ; 
+				
+		if(userDetail !=null){
+			prodInfo = userDetail.getProductInfo();
+			
+			for(ProductInfo pdInfo : productInfo){
+				for(ProductInfo pInfo : prodInfo){
+					if(pInfo !=null && pInfo.getProductId()!=null && pdInfo !=null && pdInfo.getProductId()!=null
+							&&
+							pInfo.getProductId().equals(pdInfo.getProductId())){
+						
+						System.out.println("deleting product "+pdInfo );
+						userRepository.deleteUserDetailsByProductInfo(pdInfo);
+						System.out.println("deleted product "+pdInfo );
+						
+					}
+				}
+			}
+			
+		}
 		
 	}
 	

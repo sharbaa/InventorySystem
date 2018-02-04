@@ -37,10 +37,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/addProduct" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addInventory(@RequestBody UserDetails userDeails){
+	public void addProduct(@RequestBody UserDetails userDeails){
 		userDetailsService.addProductForUser(userDeails.getUserToken(), userDeails.getProductInfo());
 	}
 
+	@RequestMapping(value="/removeProduct" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void deleteProduct(@RequestBody UserDetails userDeails){
+		userDetailsService.deleteProductForUser(userDeails.getUserToken(), userDeails.getProductInfo());
+	}
 	
 	
 	
