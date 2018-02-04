@@ -46,11 +46,12 @@ public class UserDetailsService {
 	 * @return
 	 */
 	public UserWithProductAndInventory<ProductInfo, Inventory> getInventoryInfo(String userToken){
-		List<Inventory> inventoryList = null;
+		
 		UserWithProductAndInventory<ProductInfo, Inventory> productAndInventory = null;
 		UserDetails userDetail = userRepository.findByUserToken(userToken);
+		List<Inventory> inventoryList  = inventoryService.getInventoryDetails();
+		
 		if(userDetail == null){
-			inventoryList = inventoryService.getInventoryDetails();
 			productAndInventory = new UserWithProductAndInventory<>(null, inventoryList);
 					
 		}else{
