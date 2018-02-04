@@ -65,15 +65,16 @@ public class UserDetailsService {
 		List<Inventory> inventoryList = inventoryService.getInventoryDetails();
 		
 		for (Inventory inventory : inventoryList) {
+			Inventory invntry = new Inventory();
 			for (ProductInfo product : productInfo) {
 				if (product.getProductId().equals(inventory.getProductInfo().getProductId())){
 				
-					inventory.setInvetoryId(inventory.getInvetoryId());
-					inventory.setQuantity(inventory.getQuantity()-product.getQunatity());
-					inventory.setProductInfo(product);
+					invntry.setInvetoryId(inventory.getInvetoryId());
+					invntry.setQuantity(inventory.getQuantity()-product.getQunatity());
+					invntry.setProductInfo(product);
 
 				}
-				inventoryService.saveInventoryDetails(inventory);
+				inventoryService.saveInventoryDetails(invntry);
 			}
 		}
 

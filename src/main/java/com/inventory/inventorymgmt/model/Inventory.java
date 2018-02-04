@@ -2,6 +2,9 @@ package com.inventory.inventorymgmt.model;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+
 public class Inventory implements Serializable {
 
 	/**
@@ -9,15 +12,17 @@ public class Inventory implements Serializable {
 	 */
 	private static final long serialVersionUID = 6528021435831017698L;
 
-	private String invetoryId;
+	@Id
+	@Indexed(unique = true)
+	private Integer invetoryId;
 	private ProductInfo productInfo;
 	private Integer quantity;
 
-	public String getInvetoryId() {
+	public Integer getInvetoryId() {
 		return invetoryId;
 	}
 
-	public void setInvetoryId(String invetoryId) {
+	public void setInvetoryId(Integer invetoryId) {
 		this.invetoryId = invetoryId;
 	}
 

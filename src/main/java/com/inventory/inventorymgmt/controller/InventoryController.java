@@ -28,7 +28,7 @@ public class InventoryController {
 	}
 	
 	@RequestMapping(value="/insert/inventorydetails/{id}/{quantity}" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addInventory(@RequestBody ProductInfo productInfo ,@PathVariable String id,@PathVariable Integer quantity){
+	public void addInventory(@RequestBody ProductInfo productInfo ,@PathVariable Integer id,@PathVariable Integer quantity){
 		Inventory inventory = new Inventory();
 		inventory.setInvetoryId(id);
 		inventory.setProductInfo(productInfo);
