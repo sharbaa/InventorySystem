@@ -35,8 +35,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/addProduct" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addInventory(@RequestBody String userToken ,@RequestBody List<ProductInfo> productInfo){
-		userDetailsService.addProductForUser(userToken, productInfo);
+	public void addInventory(@RequestBody UserDetails userDeails){
+		userDetailsService.addProductForUser(userDeails.getUserToken(), userDeails.getProductInfo());
 	}
 
 	
