@@ -119,7 +119,7 @@ public class UserDetailsService {
 							pInfo.getProductId().equals(pdInfo.getProductId())){
 						
 						System.out.println("deleting product "+pdInfo );
-						userRepository.deleteUserDetailsByProductInfo(pdInfo);
+						userRepository.deleteUserDetailsByProductInfo(pdInfo.getProductId());
 						System.out.println("deleted product "+pdInfo );
 						
 					}
