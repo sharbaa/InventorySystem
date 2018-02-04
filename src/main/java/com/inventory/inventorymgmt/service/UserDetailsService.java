@@ -27,6 +27,7 @@ public class UserDetailsService {
 	
 	
 	public UserDetails getUserInfo(String userToken){
+		System.out.println("token value " +userToken);
 		return userRepository.findByUserToken(userToken);
 	}
 	
