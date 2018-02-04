@@ -14,4 +14,6 @@ public interface InventoryRepository extends MongoRepository<Inventory, Integer>
 	public Inventory findByInvetoryId(Integer invetoryId);
 	
 	public Integer deleteInventoryByInvetoryId(Integer invetoryId);
+	
+	public Inventory findByProuctId(Integer productId);
 }

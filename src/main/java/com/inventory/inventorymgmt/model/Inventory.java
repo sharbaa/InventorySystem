@@ -2,9 +2,6 @@ package com.inventory.inventorymgmt.model;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-
 public class Inventory implements Serializable {
 
 	/**

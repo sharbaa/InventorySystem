@@ -46,7 +46,15 @@ public class InventoryService {
 	}
 	
 	public void removeInventoryDetails(Integer id){
-		System.out.println("inventory to delete ### " +id);
 		inventoryRepository.deleteInventoryByInvetoryId(id);
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public 	Inventory findInventoryByProductId(Integer id){
+		return inventoryRepository.findByProuctId(id);
 	}
 }

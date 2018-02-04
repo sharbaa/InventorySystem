@@ -108,6 +108,7 @@ public class UserDetailsService {
 		
 		UserDetails userDetail = userRepository.findByUserToken(userToken);
 		List<ProductInfo> prodInfo ; 
+		Inventory inventory=null;
 				
 		if(userDetail !=null){
 			prodInfo = userDetail.getProductInfo();
@@ -119,7 +120,15 @@ public class UserDetailsService {
 							pInfo.getProductId().equals(pdInfo.getProductId())){
 						
 						System.out.println("deleting product "+pdInfo );
+						inventory = inventoryService.findInventoryByProductId(pdInfo.getProductId());
+						
+						System.out.println("product (findInventoryByProductId)info## "+inventory );
 						userRepository.deleteUserDetailsByProductInfo(pdInfo.getProductId());
+						if(inventory !=null){
+						inventoryService.removeInventoryDetails(inventory.getInvetoryId());
+						inventory.getProductInfo().setQunatity(inventory.getProductInfo().getQunatity()
+								+pdInfo.getQunatity());		
+						}
 						System.out.println("deleted product "+pdInfo );
 						
 					}
