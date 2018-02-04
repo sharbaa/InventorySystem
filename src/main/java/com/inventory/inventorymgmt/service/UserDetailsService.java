@@ -79,13 +79,15 @@ public class UserDetailsService {
 			
 			Inventory invntry = inventoryService.findByInventoryId(inventory.getInvetoryId());
 			if(invntry !=null){
-			inventoryService.removeInventoryDetails(invntry.getInvetoryId());
 			
 			for (ProductInfo product : productInfo) {
 				if (product.getProductId().equals(inventory.getProductInfo().getProductId())){
 				
+					inventoryService.removeInventoryDetails(invntry.getInvetoryId());
+					
 					invntry.setInvetoryId(inventory.getInvetoryId());
 					invntry.setQuantity(inventory.getQuantity()-product.getQunatity());
+					product.setQunatity(inventory.getQuantity()-product.getQunatity());
 					invntry.setProductInfo(product);
 					inventoryService.saveInventoryDetails(invntry);
 				}
