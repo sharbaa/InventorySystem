@@ -70,7 +70,7 @@ public class UserDetailsService {
 		for (Inventory inventory : inventoryList) {
 			Inventory invntry = inventoryService.findByInventoryId(inventory.getInvetoryId());
 			System.out.println("inventory present : "+invntry);
-			inventoryService.removeInventoryDetailById(invntry.getInvetoryId());
+			inventoryService.removeInventoryDetails(invntry);
 			for (ProductInfo product : productInfo) {
 				if (product.getProductId().equals(inventory.getProductInfo().getProductId())){
 				
