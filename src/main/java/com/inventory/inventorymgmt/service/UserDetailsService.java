@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.inventory.inventorymgmt.model.Inventory;
 import com.inventory.inventorymgmt.model.ProductInfo;
 import com.inventory.inventorymgmt.model.UserDetails;
+import com.inventory.inventorymgmt.model.UserWithProductAndInventory;
 import com.inventory.inventorymgmt.repository.InventoryRepository;
 import com.inventory.inventorymgmt.repository.UserRepository;
 
@@ -44,13 +45,19 @@ public class UserDetailsService {
 	 * @param userToken
 	 * @return
 	 */
-	public List<Inventory> getInventoryInfo(String userToken){
+	public UserWithProductAndInventory<ProductInfo, Inventory> getInventoryInfo(String userToken){
 		List<Inventory> inventoryList = null;
-		UserDetails userDetail = userRepository.findOne(userToken);
+		UserWithProductAndInventory<ProductInfo, Inventory> productAndInventory = null;
+		UserDetails userDetail = userRepository.findByUserToken(userToken);
 		if(userDetail == null){
-		 inventoryList = inventoryService.getInventoryDetails();	
+			inventoryList = inventoryService.getInventoryDetails();
+			productAndInventory = new UserWithProductAndInventory<>(null, inventoryList);
+					
+		}else{
+			productAndInventory = new UserWithProductAndInventory<>(userDetail.getProductInfo(), inventoryList);
+				
 		}
-		return inventoryList;
+		return productAndInventory;
 	}
 	
 	
@@ -71,9 +78,7 @@ public class UserDetailsService {
 			
 			Inventory invntry = inventoryService.findByInventoryId(inventory.getInvetoryId());
 			if(invntry !=null){
-			System.out.println("inventory present : "+invntry);
 			inventoryService.removeInventoryDetails(invntry.getInvetoryId());
-			System.out.println("inventory deleted : "+invntry);
 			
 			for (ProductInfo product : productInfo) {
 				if (product.getProductId().equals(inventory.getProductInfo().getProductId())){

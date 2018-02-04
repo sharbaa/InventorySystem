@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inventory.inventorymgmt.model.Inventory;
+import com.inventory.inventorymgmt.model.ProductInfo;
 import com.inventory.inventorymgmt.model.UserDetails;
+import com.inventory.inventorymgmt.model.UserWithProductAndInventory;
 import com.inventory.inventorymgmt.service.UserDetailsService;
 
 
@@ -30,7 +32,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/inventoryinfo/{userToken}" , method = RequestMethod.POST , consumes=MediaType.APPLICATION_JSON_VALUE)
-	public List<Inventory> getInventoryDetails(@PathVariable String userToken){
+	public UserWithProductAndInventory<ProductInfo, Inventory> getInventoryDetails(@PathVariable String userToken){
 		return userDetailsService.getInventoryInfo(userToken);
 	}
 	
