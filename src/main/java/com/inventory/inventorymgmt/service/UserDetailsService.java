@@ -26,11 +26,21 @@ public class UserDetailsService {
 	InventoryService inventoryService;
 	
 	
+	/**
+	 * 
+	 * @param userToken
+	 * @return
+	 */
 	public UserDetails getUserInfo(String userToken){
-		System.out.println("token value " +userToken);
 		return userRepository.findByUserToken(userToken);
 	}
 	
+	
+	/**
+	 * 
+	 * @param userToken
+	 * @return
+	 */
 	public List<Inventory> getInventoryInfo(String userToken){
 		List<Inventory> inventoryList = null;
 		UserDetails userDetail = userRepository.findOne(userToken);
@@ -41,6 +51,11 @@ public class UserDetailsService {
 	}
 	
 	
+	/**
+	 * 
+	 * @param userToken
+	 * @param productInfo
+	 */
 	public void addProductForUser(String userToken,List<ProductInfo> productInfo){
 		
 		UserDetails userDetail = new UserDetails();
@@ -50,16 +65,15 @@ public class UserDetailsService {
 		List<Inventory> inventoryList = inventoryService.getInventoryDetails();
 		
 		for (Inventory inventory : inventoryList) {
-			Inventory invntry = new Inventory();
 			for (ProductInfo product : productInfo) {
 				if (product.getProductId().equals(inventory.getProductInfo().getProductId())){
 				
-					invntry.setInvetoryId(inventory.getInvetoryId());
-					invntry.setQuantity(inventory.getQuantity()-product.getQunatity());
-					invntry.setProductInfo(product);
+					inventory.setInvetoryId(inventory.getInvetoryId());
+					inventory.setQuantity(inventory.getQuantity()-product.getQunatity());
+					inventory.setProductInfo(product);
 
 				}
-				inventoryService.saveInventoryDetails(invntry);
+				inventoryService.saveInventoryDetails(inventory);
 			}
 		}
 
