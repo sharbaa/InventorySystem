@@ -68,9 +68,13 @@ public class UserDetailsService {
 		List<Inventory> inventoryList = inventoryService.getInventoryDetails();
 		
 		for (Inventory inventory : inventoryList) {
+			
 			Inventory invntry = inventoryService.findByInventoryId(inventory.getInvetoryId());
+			if(invntry !=null){
 			System.out.println("inventory present : "+invntry);
-			inventoryService.removeInventoryDetails(invntry);
+			inventoryService.removeInventoryDetails(invntry.getInvetoryId());
+			System.out.println("inventory deleted : "+invntry);
+			
 			for (ProductInfo product : productInfo) {
 				if (product.getProductId().equals(inventory.getProductInfo().getProductId())){
 				
@@ -82,7 +86,9 @@ public class UserDetailsService {
 				
 			}
 		}
-
+			
+		}
+	
 		userRepository.save(userDetail);
 		
 	}

@@ -45,7 +45,8 @@ public class InventoryService {
 		return inventoryRepository.findByInvetoryId(id);
 	}
 	
-	public void removeInventoryDetails(Inventory inventory){
-		inventoryRepository.delete(inventory);
+	public void removeInventoryDetails(Integer id){
+		System.out.println("inventory to delete ### " +id);
+		inventoryRepository.deleteInventoryByInvetoryId(id);
 	}
 }
