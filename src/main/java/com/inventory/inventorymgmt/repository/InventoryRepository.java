@@ -11,4 +11,5 @@ import com.inventory.inventorymgmt.model.Inventory;
  */
 public interface InventoryRepository extends MongoRepository<Inventory, Integer>{
 
+	public Inventory findByInvetoryId(Integer invetoryId);
 }

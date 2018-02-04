@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.inventory.inventorymgmt.model.Inventory;
 import com.inventory.inventorymgmt.model.ProductInfo;
 import com.inventory.inventorymgmt.model.UserDetails;
+import com.inventory.inventorymgmt.repository.InventoryRepository;
 import com.inventory.inventorymgmt.repository.UserRepository;
 
 /**
@@ -24,6 +25,8 @@ public class UserDetailsService {
 	
 	@Autowired
 	InventoryService inventoryService;
+	
+	
 	
 	
 	/**
@@ -65,16 +68,16 @@ public class UserDetailsService {
 		List<Inventory> inventoryList = inventoryService.getInventoryDetails();
 		
 		for (Inventory inventory : inventoryList) {
-			Inventory invntry = new Inventory();
+			Inventory invntry = inventoryService.findByInventoryId(inventory.getInvetoryId());
 			for (ProductInfo product : productInfo) {
 				if (product.getProductId().equals(inventory.getProductInfo().getProductId())){
 				
 					invntry.setInvetoryId(inventory.getInvetoryId());
 					invntry.setQuantity(inventory.getQuantity()-product.getQunatity());
 					invntry.setProductInfo(product);
-
+					inventoryService.saveInventoryDetails(invntry);
 				}
-				inventoryService.saveInventoryDetails(invntry);
+				
 			}
 		}
 

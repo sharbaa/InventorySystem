@@ -12,8 +12,7 @@ public class Inventory implements Serializable {
 	 */
 	private static final long serialVersionUID = 6528021435831017698L;
 
-	@Id
-	@Indexed(unique = true)
+	
 	private Integer invetoryId;
 	private ProductInfo productInfo;
 	private Integer quantity;

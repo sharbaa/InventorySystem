@@ -36,5 +36,13 @@ public class InventoryService {
 		 inventoryRepository.save(inventoryInfo);
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public 	Inventory findByInventoryId(Integer id){
+		return inventoryRepository.findByInvetoryId(id);
+	}
 	
 }
